@@ -2,7 +2,7 @@
 
 A set of open-source Integrated Sensing and Communication (ISAC) libraries for ROS and Gazebo.
 
-## Overview
+## Overview & Setup
 
 This repository hosts all of the source code of the framework. The framework is built on **ROS 2 Humble** and **Gazebo (Ignition)**; and is designed to support research and prototyping of **ISAC** applications.
 
@@ -11,7 +11,19 @@ The toolkit provides:
 - A **custom Gazebo Sensor Plugin** that emulates ISAC wireless signal propagation and sensing effects.
 - A **ROS 2 control layer** for implementing application logic, mobility, and network behavior.
 
+
+To use the libraries, just compile and source like a normal ROS workspace
+
+```bash
+git clone https://github.com/Fede3751/isac_libs.git
+colcon build
+source ./install/local_setup.bash
+```
+
+This set up env variables for both ROS packages and Gazebo models and plugins.
+
 ---
+
 ## ROS 2 Workspace & Packages Organization
 
 The framework is organized into multiple ROS 2 packages, which are listed and described here:
@@ -53,7 +65,7 @@ self.event_scheduler = EventScheduler()
 self.create_subscription(
   Clock,
   f"/world/{WORLD_NAME}/clock",
-  event_scheduler.routine,
+  self.event_scheduler.routine,
   10
 )
 ```
