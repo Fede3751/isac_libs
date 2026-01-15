@@ -15,7 +15,8 @@ The toolkit provides:
 To use the libraries, just compile and source like a normal ROS workspace
 
 ```bash
-git clone https://github.com/Fede3751/isac_libs.git
+mkdir src
+git clone https://github.com/Fede3751/isac_libs.git src
 colcon build
 source ./install/local_setup.bash
 ```
@@ -40,6 +41,7 @@ Contains some function to support a ROS 2 Python Launch File.
 create_gazebo_launch_description(world_name)
 ```
 Used to return a list of ROS 2 Launch Nodes which start Gazebo along with important bridges for world clock and world control.
+The world_name launched should be found inside ```src/isac_libs_resources/worlds``` before compilation. Due to some limitation with ROS launch substitutions, world files are expected to be without the .sdf extension.
 
 ```
 create_isac_device_launch_description(...)
@@ -50,6 +52,8 @@ Used to launch a ROS 2 node which extends an ISACDeviceController class, it auto
 spawn_sdf(...)
 ```
 Used to dinamically spawn a Gazebo sdf model at startup. The function loads an sdf from a file and changes every occurency of the model name with name_id.
+
+  The function looks for sdf files inside ```src/isac_libs_resources/models```. All the models share a common structure, with a folder named after the model, and a ```model.sdf``` file inside. Some example pre-defined models are available.
 Note that this function is currently not time safe and may fail to spawn some devices if overloaded. Corrections will be coming in next iterations of the library. For the time being, please increase the timeout timer used in the function if you notice that some models fail to appear.
 
 ##### event_scheduler.py
@@ -75,13 +79,24 @@ self.event_scheduler.schedule_event(timeout, callback_function, repeat=True|Fals
 ```
 
 ##### math_utils.py
-Just a collection of some math function/utilities used sometimes across the library.
+Just a collection of math function/utilities used sometimes across the library.
 
 ### isac_libs resources
+Contains all the resources used by Gazebo. **ISACAntenna** and **ISACAntennaSystem** plugins are stored here. Please refer to their documentation in the next section.
 
 ### isac_libs_interfaces
+Contains ROS interfaces used by the toy_example.
 
 ### isac_libs_toy_example
+Contains the Toy Example demo. 
+The demo can be started directly with the following launch file:
+
+```
+ros2 launch isac_libs_toy_example main.launch.py
+```
+
+The default simulation spawns 1 edge device, 3 relays, and 1 agent user. Parameters can be given to change multiple simulation settings.
+
 
 ---
 
@@ -115,3 +130,13 @@ After that, any model inside the simulation can use its own **ISACAntenna** Sens
 </sensor>
 ```
 
+Models inside ```isac_libs_resources``` already come with their ISACAntenna sensor configured, with different parameters set depending on the device.
+
+
+## Future Work & Directions
+
+The work of ISAC Libs is still ongoing, with new features planned mainly for the Gazebo plugin.
+
+- Update of the 2D interface package. Currently left behind for a focus on offline evaluation. We feel that Gazebo needs an online evaluation tool.
+- Support for directional antennas, with ad-hoc models advertising ```cmd_vel``` to move their orientations
+- Support for Reconfigurable Intelliget Surfaces (RIS) interfaces
