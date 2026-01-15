@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdf version='1.6'>
+  <model name='AntennaRelay'>
+    <static>true</static>
+    <link name='link'>
+        <sensor name="ISACAntennaSensor" type="custom" ignition:type="ISACAntenna">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>true</visualize>
+          <ignition:ISACAntenna>
+            <tx_power_dBm>15.0</tx_power_dBm>            <!-- moderate power to serve nearby users -->
+            <path_loss_exponent>3.0</path_loss_exponent> <!-- indoor or cluttered environment -->
+            <fading_std>4.0</fading_std>                <!-- more fading due to multipath -->
+            <bandwidth_Hz>2e6</bandwidth_Hz>            <!-- limited bandwidth per relay -->
+            <noise_figure_dB>6.0</noise_figure_dB>      <!-- typical receiver NF for relay -->
+          </ignition:ISACAntenna>
+        </sensor>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <uri>model://antenna_relay/meshes/antenna_relay.dae</uri>
+            <scale>0.3 0.3 0.3</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <geometry>
+          <mesh>
+            <uri>model://antenna_relay/meshes/antenna_relay.dae</uri>
+            <scale>0.3 0.3 0.3</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <!-- <plugin name='ignition::gazebo::systems::OdometryPublisher'
+      filename='ignition-gazebo-odometry-publisher-system'>
+      <odom_topic>/AntennaRelay/odometry</odom_topic>
+      <dimensions>3</dimensions>
+    </plugin> -->
+  </model>
+</sdf>

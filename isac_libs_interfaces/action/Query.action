@@ -1,0 +1,13 @@
+# Request part
+int32 id
+int32 sensor_id
+int32 target
+geometry_msgs/Point location
+string[] parameters
+string strategy
+---
+string[] sensor_response
+int32 edge_device_id
+string strategy
+---
+string feedback

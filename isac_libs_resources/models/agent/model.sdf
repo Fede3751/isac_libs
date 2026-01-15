@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdf version='1.6'>
+<model name='Agent'>
+    <scale>100 100 10</scale>
+    <link name="torso">
+        <sensor name="ISACAntennaSensor" type="custom" ignition:type="ISACAntenna">
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <visualize>true</visualize>
+            <ignition:ISACAntenna>
+                <tx_power_dBm>10.0</tx_power_dBm>            <!-- low power for short-range communication -->
+                <path_loss_exponent>3.5</path_loss_exponent> <!-- high path loss, mobile devices in cluttered space -->
+                <fading_std>6.0</fading_std>                <!-- high fading, mobile users -->
+                <bandwidth_Hz>1e6</bandwidth_Hz>            <!-- small channel for sensor data -->
+                <noise_figure_dB>7.0</noise_figure_dB>      <!-- small cheap receiver -->
+            </ignition:ISACAntenna>
+        </sensor>
+        <pose>0 0 0.6 0 0 0</pose>
+        <rf name="rf">
+                <material>wood</material>
+                <attenuation_db_per_m>5.0</attenuation_db_per_m>
+        </rf>
+        <collision name="collision">
+
+            <geometry>
+                <capsule>
+                    <radius>0.22</radius>
+                    <length>0.8</length>
+                </capsule>
+            </geometry>
+        </collision>
+        <visual name="visual">
+            <geometry>
+                <capsule>
+                    <radius>0.22</radius>
+                    <length>0.8</length>
+                </capsule>
+            </geometry>
+            <material>
+                <ambient>0.0 0.7 0.3 1</ambient>
+                <diffuse>0.0 0.7 0.3 1</diffuse>
+                <specular>0.0 0.7 0.3 1</specular>
+            </material>
+        </visual>
+    </link>
+    <!-- Head -->
+    <link name="head">
+        <!-- Center of head sits on top of torso -->
+        <pose>0 0 0.95 0 0 0</pose>
+        <collision name="collision">
+            <geometry>
+                <sphere><radius>0.3</radius></sphere>
+            </geometry>
+        </collision>
+        <visual name="visual">
+            <geometry>
+                <sphere><radius>0.3</radius></sphere>
+            </geometry>
+            <material>
+                <ambient>0.0 0.7 0.3 1</ambient>
+                <diffuse>0.0 0.7 0.3 1</diffuse>
+                <specular>0.0 0.7 0.3 1</specular>
+            </material>
+        </visual>
+        
+    </link>
+    <joint name="head_fixed" type="fixed">
+        <parent>torso</parent>
+        <child>head</child>
+    </joint>
+            
+    <!-- Invisible stabilizing base -->
+    <link name="stability_base">
+        <pose>0 0 0.05 0 0 0</pose>
+        <collision name="collision">
+            <geometry>
+                <cylinder>
+                    <radius>1</radius>
+                    <length>0.1</length>
+                </cylinder>
+            </geometry>
+            <surface>
+                <contact>
+                    <collide_without_contact>true</collide_without_contact>
+                    <soft_cfm>0</soft_cfm>
+                </contact>
+            </surface>
+        </collision>
+        <visual name="visual">
+            <geometry>
+                <cylinder>
+                    <radius>1</radius>
+                    <length>0.1</length>
+                </cylinder>
+            </geometry>
+            <material><ambient>0 0 0 0</ambient></material>
+            <visibility_flags>0</visibility_flags>
+        </visual>
+    </link>
+    <!-- Fix torso to base -->
+    <joint name="base_joint" type="fixed">
+        <parent>torso</parent>
+        <child>stability_base</child>
+    </joint>
+
+    <link name='left_wheel'>
+            <pose relative_to="torso">0 0.3 -0.45 -1.5707 0 0</pose>
+            <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                            <ixx>0.013333</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>0.013333</iyy>
+                            <iyz>0</iyz>
+                            <izz>0.02</izz>
+                    </inertia>
+            </inertial>
+            <visual name='visual'>
+                    <geometry>
+                            <cylinder>
+                                    <radius>0.2</radius>
+                                    <length>0.1</length>
+                            </cylinder>
+                    </geometry>
+                    <material>
+                            <ambient>0.0 0.0 0.0 1</ambient>
+                            <diffuse>0.0 0.0 0.0 1</diffuse>
+                            <specular>0.0 0.0 0.0 1</specular>
+                    </material>
+                    <visibility_flags>0</visibility_flags>
+            </visual>
+            <collision name='collision'>
+                    <geometry>
+                            <cylinder>
+                                    <radius>0.2</radius>
+                                    <length>0.1</length>
+                            </cylinder>
+                    </geometry>
+            </collision>
+    </link>
+
+    <link name='right_wheel'>
+            <pose relative_to="torso">0 -0.3 -0.45 -1.5707 0 0</pose>
+            <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                            <ixx>0.013333</ixx>
+                            <ixy>0</ixy>
+                            <ixz>0</ixz>
+                            <iyy>0.013333</iyy>
+                            <iyz>0</iyz>
+                            <izz>0.02</izz>
+                    </inertia>
+            </inertial>
+            <visual name='visual'>
+                    <geometry>
+                            <cylinder>
+                                    <radius>0.2</radius>
+                                    <length>0.1</length>
+                            </cylinder>
+                    </geometry>
+                    <material>
+                            <ambient>0.0 0.0 0.0 1</ambient>
+                            <diffuse>0.0 0.0 0.0 1</diffuse>
+                            <specular>0.0 0.0 0.0 1</specular>
+                    </material>
+                    <visibility_flags>0</visibility_flags>
+            </visual>
+            <collision name='collision'>
+                    <geometry>
+                            <cylinder>
+                                    <radius>0.2</radius>
+                                    <length>0.1</length>
+                            </cylinder>
+                    </geometry>
+            </collision>
+    </link>
+
+    <joint name='left_wheel_joint' type='revolute'>
+        <pose relative_to='left_wheel' />
+        <parent>torso</parent>
+        <child>left_wheel</child>
+        <axis>
+            <xyz expressed_in='__model__'>0 1 0</xyz>
+            <limit>
+                <lower>-1.79769e+308</lower>    <!--negative
+                infinity-->
+                <upper>1.79769e+308</upper>     <!--positive
+                infinity-->
+            </limit>
+        </axis>
+    </joint>
+    <joint name='right_wheel_joint' type='revolute'>
+            <pose relative_to='right_wheel' />
+            <parent>torso</parent>
+            <child>right_wheel</child>
+            <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz>
+                    <limit>
+                            <lower>-1.79769e+308</lower>    <!--negative
+                            infinity-->
+                            <upper>1.79769e+308</upper>     <!--positive
+                            infinity-->
+                    </limit>
+            </axis>
+    </joint>
+    <plugin
+        filename="libignition-gazebo-diff-drive-system.so"
+        name="ignition::gazebo::systems::DiffDrive">
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>2</wheel_separation>
+        <wheel_radius>0.1</wheel_radius>
+        <topic>Agent/cmd_vel</topic>
+        <odom_topic>Agent/odometry</odom_topic>
+    </plugin>
+  </model>
+</sdf>

@@ -1,0 +1,6 @@
+plugin_path="@CMAKE_INSTALL_PREFIX@/lib/"
+model_path="@CMAKE_INSTALL_PREFIX@/share/isac_libs_resources/models"
+world_path="@CMAKE_INSTALL_PREFIX@/share/isac_libs_resources/worlds"
+
+export IGN_GAZEBO_SYSTEM_PLUGIN_PATH="${IGN_GAZEBO_SYSTEM_PLUGIN_PATH}:${plugin_path}"
+export IGN_GAZEBO_RESOURCE_PATH="${IGN_GAZEBO_SYSTEM_PLUGIN_PATH}:${model_path}:${world_path}:"
