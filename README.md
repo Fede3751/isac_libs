@@ -94,14 +94,14 @@ Just a collection of math function/utilities used sometimes across the library.
 Contains all the resources used by Gazebo. **ISACAntenna** and **ISACAntennaSystem** plugins are stored here. Please refer to their documentation in the next section.
 
 ### isac_libs_interfaces
-Contains ROS interfaces used by the toy_example.
+Contains ROS interfaces used by the MEC example.
 
-### isac_libs_toy_example
-Contains the Toy Example demo. 
+### isac_libs_mec_example
+Contains the MEC Example demo. 
 The demo can be started directly with the following launch file:
 
 ```
-ros2 launch isac_libs_toy_example main.launch.py
+ros2 launch isac_libs_mec_example main.launch.py
 ```
 
 The default simulation spawns 1 edge device, 3 relays, and 1 agent user. Parameters can be given to change multiple simulation settings.
