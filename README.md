@@ -1,4 +1,4 @@
-# Isac Libs - ROS & Gazebo Framework for Integrated Sensing and Communication
+# Isac Libs - ROS & Gazebo Libraries for Integrated Sensing and Communication
 
 A set of open-source Integrated Sensing and Communication (ISAC) libraries for ROS and Gazebo.
 
