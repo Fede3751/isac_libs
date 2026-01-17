@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 
 from isac_libs_main.utils.launch_utils import create_isac_device_launch_description, spawn_sdf, create_gazebo_launch_description
-
+from launch_ros.actions import Node
 
 WORLD_NAME = "sensing_world"
 
@@ -38,6 +38,14 @@ def generate_launch_description():
         ))
     
     nodes.append(spawn_sdf("agent_wifi", 2, (-3, -10, 0), WORLD_NAME))
+
+
+    nodes.append(
+        Node(
+            package="isac_libs_sensing_example",
+            executable="isac_signal_display"
+        )
+    )
 
 
 
