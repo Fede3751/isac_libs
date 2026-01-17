@@ -8,7 +8,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 
-from isac_libs_toy_example.cache_types.cache_strategy import CacheType
+from isac_libs_mec_example.structs.cache_strategy import CacheType
 
 
 from geometry_msgs.msg import Twist, Point, Vector3

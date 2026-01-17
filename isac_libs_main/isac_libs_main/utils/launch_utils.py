@@ -130,7 +130,7 @@ def create_isac_device_launch_description(package: str, executable: str, namespa
                 ]
 
     if return_node_for_bridges:
-        actions.extend([
+        actions.append(
             Node(
                 package="ros_gz_bridge",
                 executable="parameter_bridge",
@@ -138,7 +138,7 @@ def create_isac_device_launch_description(package: str, executable: str, namespa
                 arguments=ros_gz_bridge_arguments,
                 output="screen",
             )
-        ])
+        )
 
         return actions
 

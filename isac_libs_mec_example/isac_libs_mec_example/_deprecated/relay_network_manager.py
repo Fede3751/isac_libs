@@ -8,7 +8,7 @@ from rclpy.node import Node
 from rclpy.action import ActionClient
 from rclpy.executors import MultiThreadedExecutor
 
-from isac_libs_mec_example.utils.toy_example_utils import compute_area_coverage, edge_device_placement, compute_random_covered_positions
+from isac_libs_mec_example.utils.mec_example_utils import compute_area_coverage, edge_device_placement, compute_random_covered_positions
 from isac_libs_mec_example._deprecated.simplified_sensor import SimplifiedSensor
 
 from std_msgs.msg import String

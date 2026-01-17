@@ -7804,10 +7804,10 @@
   </library_lights>
   <library_images>
     <image id="RadioTower_Diffuse_tga">
-      <init_from>base_station/materials/textures/radio_tower_diffuse.jpg</init_from>
+      <init_from>antenna_relay/materials/textures/radio_tower_diffuse.jpg</init_from>
     </image>
     <image id="RadioTower_Spec_tga">
-      <init_from>base_station/materials/textures/radio_tower_spec.jpg</init_from>
+      <init_from>antenna_relay/materials/textures/radio_tower_spec.jpg</init_from>
     </image>
   </library_images>
   <library_visual_scenes>

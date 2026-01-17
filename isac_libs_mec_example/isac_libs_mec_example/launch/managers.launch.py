@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 
 
 
-main_pkg_name = "isac_libs_toy_example"
+main_pkg_name = "isac_libs_mec_example"
 display_pkg_name = "isac_libs_display"
 description_pkg_name ="isac_libs_resources"
 

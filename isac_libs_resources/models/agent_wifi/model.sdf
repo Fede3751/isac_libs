@@ -8,11 +8,11 @@
             <update_rate>30</update_rate>
             <visualize>true</visualize>
             <ignition:ISACAntenna>
-                <tx_power_dBm>10.0</tx_power_dBm>            <!-- low power for short-range communication -->
-                <path_loss_exponent>3.5</path_loss_exponent> <!-- high path loss, mobile devices in cluttered space -->
-                <fading_std>6.0</fading_std>                <!-- high fading, mobile users -->
-                <bandwidth_Hz>1e6</bandwidth_Hz>            <!-- small channel for sensor data -->
-                <noise_figure_dB>7.0</noise_figure_dB>      <!-- small cheap receiver -->
+                <tx_power_dBm>15.0</tx_power_dBm>            <!-- low power for short-range communication -->
+                <path_loss_exponent>2.5</path_loss_exponent> <!-- high path loss, mobile devices in cluttered space -->
+                <fading_std>2.0</fading_std>                <!-- high fading, mobile users -->
+                <bandwidth_Hz>20e6</bandwidth_Hz>            <!-- small channel for sensor data -->
+                <noise_figure_dB>5.0</noise_figure_dB>      <!-- small cheap receiver -->
             </ignition:ISACAntenna>
         </sensor>
         <pose>0 0 0.6 0 0 0</pose>

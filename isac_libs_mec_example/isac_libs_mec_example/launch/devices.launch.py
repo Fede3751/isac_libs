@@ -13,7 +13,7 @@ from isac_libs_main.utils.launch_utils import (
     create_isac_device_launch_description,
 )
 
-from isac_libs_mec_example.utils.toy_example_utils import (
+from isac_libs_mec_example.utils.mec_example_utils import (
     base_station_placement,
     edge_device_placement,
     compute_area_coverage,
@@ -21,7 +21,7 @@ from isac_libs_mec_example.utils.toy_example_utils import (
 )
 
 
-main_pkg_name = "isac_libs_toy_example"
+main_pkg_name = "isac_libs_mec_example"
 display_pkg_name = "isac_libs_display"
 resources_pkg_name ="isac_libs_resources"
 
@@ -73,7 +73,7 @@ def _setup_robots(context: LaunchContext, *args, **kwargs):
     for i, coord in enumerate(edge_devices_coords):
 
         device, bridges = create_isac_device_launch_description(
-            package="isac_libs_toy_example",
+            package="isac_libs_mec_example",
             executable="edge_device_controller",
             namespace=f"EdgeDevice_{i}",
             parameters=[
@@ -101,7 +101,7 @@ def _setup_robots(context: LaunchContext, *args, **kwargs):
         coord = [random.randint(-field_width*2, field_width*2), random.randint(-field_height*2, field_height*2), 0]
 
         device, bridges = create_isac_device_launch_description(
-            package="isac_libs_toy_example",
+            package="isac_libs_mec_example",
             executable="relay_device_controller",
             namespace=f"AntennaRelay_{i}",
             parameters=[
@@ -124,7 +124,7 @@ def _setup_robots(context: LaunchContext, *args, **kwargs):
         random_position = [random.randint(-field_width, field_width), random.randint(-field_height, field_height), 0]
 
         device, bridges = create_isac_device_launch_description(
-            package="isac_libs_toy_example",
+            package="isac_libs_mec_example",
             executable="agent_controller",
             namespace=f"Agent_{i}",
             parameters=[
