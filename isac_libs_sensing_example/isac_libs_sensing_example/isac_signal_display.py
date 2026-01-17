@@ -23,16 +23,12 @@ class ISACSignalDisplay(Node):
 
         # Buffer to store latest telemetry
         self.telemetry_data = {
-            "rx_power_dBm": [],
-            "timestamps": []
+            "snr_dB": [],
         }
 
 
         self.start_time = time.time()
 
-        # Start DearPyGui in a separate thread
-
-        #self.create_timer(1, self.update_plot)
 
         self.gui_thread = threading.Thread(target=self.start_gui, daemon=True)
         self.gui_thread.start()
@@ -45,7 +41,7 @@ class ISACSignalDisplay(Node):
             t = time.time() - self.start_time
 
             # Store latest values
-            self.telemetry_data["rx_power_dBm"].append((t, telemetry["rx_power_dBm"]))
+            self.telemetry_data["snr_dB"].append((t, telemetry["snr_dB"]))
 
             # Keep only last N points
             max_points = 100
@@ -66,9 +62,9 @@ class ISACSignalDisplay(Node):
 
             with dpg.plot(label="", height=150, width=-1) as rx_plot:
 
-                x_axis = dpg.add_plot_axis(dpg.mvXAxis, label="Time (s)", parent=rx_plot, tag="rx_power_dBm_x")
-                y_axis = dpg.add_plot_axis(dpg.mvYAxis, label="rx_power_dBm", parent=rx_plot, tag="rx_power_dBm_y")
-                self.rx_power_series = dpg.add_line_series([], [], label="rx_power_dBm", parent=y_axis)
+                x_axis = dpg.add_plot_axis(dpg.mvXAxis, label="Time (s)", parent=rx_plot, tag="snr_dB_x")
+                y_axis = dpg.add_plot_axis(dpg.mvYAxis, label="snr_dB", parent=rx_plot, tag="snr_dB_y")
+                self.snr_series = dpg.add_line_series([], [], label="snr_dB", parent=y_axis)
 
 
 
@@ -77,12 +73,12 @@ class ISACSignalDisplay(Node):
 
         while dpg.is_dearpygui_running():
 
-            for t, y in self.telemetry_data["rx_power_dBm"]:
-                dpg.set_value(self.rx_power_series, ([x[0] for x in self.telemetry_data["rx_power_dBm"]],
-                                                        [x[1] for x in self.telemetry_data["rx_power_dBm"]]))
+            for t, y in self.telemetry_data["snr_dB"]:
+                dpg.set_value(self.snr_series, ([x[0] for x in self.telemetry_data["snr_dB"]],
+                                                        [x[1] for x in self.telemetry_data["snr_dB"]]))
 
-            dpg.fit_axis_data("rx_power_dBm_x")
-            dpg.fit_axis_data("rx_power_dBm_y")
+            dpg.fit_axis_data("snr_dB_x")
+            dpg.fit_axis_data("snr_dB_y")
 
 
             dpg.render_dearpygui_frame()
