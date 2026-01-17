@@ -8,7 +8,7 @@ We plan to update the library in these coming months, but it would be unfair to 
 \
 For full transparency, we are keeping track of the latest commits before the submissions here:
 - The latest version commit before the **Demo** submission can be found here: <a href="https://github.com/Fede3751/isac_libs/tree/9127274f0eadde6176ad415e619054e3bf676367"> Commit 9127274</a>
-- The latest version commit before the **Workshop** submission can be found here: <a href="https://github.com/Fede3751/isac_libs/tree/f0b8a838ad6423c4cc859607ad83646832dac4de"> Commit f0b8a83</a>
+- The latest version commit before the **Workshop** submission can be found here: <a href="https://github.com/Fede3751/isac_libs/tree/24553131a1666d71f83c71f0de179deda49f3bf9"> Commit 2455313</a>
 
 
 ## Overview & Setup
