@@ -106,6 +106,13 @@ ros2 launch isac_libs_mec_example main.launch.py
 
 The default simulation spawns 1 edge device, 3 relays, and 1 agent user. Parameters can be given to change multiple simulation settings.
 
+### isac_libs_sensing_example
+Contains the Passive Sensing Example demo. 
+The demo can be started directly with the following launch file:
+
+```
+ros2 launch isac_libs_sensing_example main.launch.py
+```
 
 ---
 
