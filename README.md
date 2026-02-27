@@ -2,15 +2,6 @@
 
 A set of open-source Integrated Sensing and Communication (ISAC) libraries for ROS and Gazebo.
 
-## Note:
-This library is currently undergoing a submission to **INFOCOM 2026**.
-We plan to update the library in these coming months, but it would be unfair to have reviews based on content added after the submission.\
-\
-For full transparency, we are keeping track of the latest commits before the submissions here:
-- The latest version commit before the **Demo** submission can be found here: <a href="https://github.com/Fede3751/isac_libs/tree/9127274f0eadde6176ad415e619054e3bf676367"> Commit 9127274</a>
-- The latest version commit before the **Workshop** submission can be found here: <a href="https://github.com/Fede3751/isac_libs/tree/24553131a1666d71f83c71f0de179deda49f3bf9"> Commit 2455313</a>
-
-
 ## Overview & Setup
 
 This repository hosts all of the source code of the framework. The framework is built on **ROS 2 Humble** and **Gazebo (Ignition)**; and is designed to support research and prototyping of **ISAC** applications.
