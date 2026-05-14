@@ -22,6 +22,7 @@ def generate_launch_description():
             executable="agent_controller",
             namespace=f"Agent_1",
             parameters=[
+                {"id": 1}
             ],
         ))
     
@@ -34,6 +35,7 @@ def generate_launch_description():
             executable="agent_controller",
             namespace=f"Agent_2",
             parameters=[
+                {"id": 2}
             ],
         ))
     

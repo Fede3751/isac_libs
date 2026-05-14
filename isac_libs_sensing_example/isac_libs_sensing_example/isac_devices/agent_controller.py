@@ -2,6 +2,7 @@ import math
 import random
 import json
 from time import sleep
+import subprocess
 
 import rclpy
 from rclpy.node import Node
@@ -16,8 +17,9 @@ from isac_libs_mec_example.structs.msg_types import MsgType, MsgPayload
 
 from std_msgs.msg import String
 from rosgraph_msgs.msg import Clock
-from geometry_msgs.msg import Point, Vector3, Twist
+from geometry_msgs.msg import Point, Vector3, Twist, Pose
 from nav_msgs.msg import Odometry
+
 
 from isac_libs_interfaces.action import Patrol
 
@@ -74,6 +76,15 @@ class AgentController(ISACDeviceController):
         )
 
 
+
+        self.set_pose_subscriber = self.create_subscription(
+            Pose,
+            'set_pose',
+            self.pose_callback,
+            10
+        )
+
+
         # ---Action Servers---
         # An Agent Controller exposes to ROS an Action Server for imparting movement orders.
         self.patrol_action_server = ActionServer(
@@ -108,6 +119,42 @@ class AgentController(ISACDeviceController):
         if not self.simulation_started:
             self.simulation_started = True
             self.start_x = odometry_msg.pose.pose.position.x
+
+
+    def pose_callback(self, msg):
+
+        cmd = f"""
+        ign service -s /world/sensing_world/set_pose \
+        --reqtype ignition.msgs.Pose \
+        --reptype ignition.msgs.Boolean \
+        --timeout 1000 \
+        --req 'name: "Agent_{self.id}"
+        position {{
+        x: {msg.position.x}
+        y: {msg.position.y}
+        z: {msg.position.z}
+        }}
+        orientation {{
+        x: {msg.orientation.x}
+        y: {msg.orientation.y}
+        z: {msg.orientation.z}
+        w: {msg.orientation.w}
+        }}'
+        """
+
+        result = subprocess.run(
+            cmd,
+            shell=True,
+            executable='/bin/bash',
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode == 0:
+            self.get_logger().info('Pose updated')
+        else:
+            self.get_logger().error(result.stderr)
+
 
 
     def submit_next_move(self):
