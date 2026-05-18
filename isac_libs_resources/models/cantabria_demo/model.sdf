@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sdf version='1.9'>
+  <model name="cantabria_demo">
+    <pose>0 0 0 0 0 0</pose>
+
+    <static>true</static>
+
+    <link name="link">
+
+      <!-- Visual mesh -->
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cantabria_demo/meshes/cantabria_demo.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+      <!-- Collision mesh -->
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://cantabria_demo/meshes/cantabria_demo.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>

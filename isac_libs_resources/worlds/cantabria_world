@@ -1,0 +1,49 @@
+<sdf version='1.9'>
+  <world name='cantabria_world'>
+    <physics name="turbo" type="ode">
+      <max_step_size>0.02</max_step_size>        <!-- 20 ms -->
+      <real_time_update_rate>50</real_time_update_rate>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
+    <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+    <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
+    <plugin name='ignition::gazebo::systems::Sensors' filename='ignition-gazebo-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
+      filename="ISACAntennaSystem"
+      name="custom::ISACAntennaSystem">
+    </plugin>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.8 0.8 0.8 1</ambient>
+      <background>0.53 0.81 0.92 1</background>
+      <shadows>false</shadows>
+      <sky>
+        <clouds>false</clouds>
+      </sky>
+      <fog>
+        <type>none</type>
+      </fog>
+      <grid>false</grid>|
+    </scene>
+    <include>
+      <uri>model://cantabria_demo</uri>
+      <pose>18.9 2.9 3.5 0 0 0</pose>
+    </include>
+    <light name="sun" type="directional">
+    
+      <cast_shadows>false</cast_shadows>
+      <shadow_resolution>2048</shadow_resolution>
+      <pose>0 0 10 0 0 0</pose>
+
+      <direction>-0.5 0.1 -0.9</direction>
+
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+    </light>
+  </world>
+</sdf>
